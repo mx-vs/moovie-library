@@ -1,23 +1,39 @@
-import styled from "styled-components";
+import styled, { keyframes } from 'styled-components';
+
+const jump = keyframes`
+  from{
+    transform: translateY(0)
+  }
+  to{
+    transform: translateY(-3px)
+  }
+`;
 
 const StyledButton = styled.button`
   cursor: pointer;
-  font-size: 15px;
   height: 25px;
-  width: 90px;
-  color: black;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  color: rgb(253, 249, 243);
   background-color: #f03d4e;
+  text-transform: uppercase;
+  font-weight: 600;
   border-radius: 5px;
   border: 0px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-out;
   :hover {
-    background: black;
-    color: white;
+    background: rgb(200, 50, 70);
+    animation: ${jump} 0.2s ease-out forwards;
   }
 `;
 
 const Button = (props) => {
-  return <StyledButton>{props.text}</StyledButton>;
+  return (
+    <StyledButton width={props.width} height={props.height}>
+      {props.text}
+    </StyledButton>
+  );
 };
 
 export default Button;

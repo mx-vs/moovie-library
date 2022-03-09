@@ -16,12 +16,13 @@ const Wrapper = styled.div`
 
 const Form = styled.form`
   margin: 0 auto;
-  width: 100%;
-  max-width: 414px;
-  padding: 10px;
+  width: 500px;
+  height: 330px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   position: relative;
+  background: #f6f8fa;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1);
 `;
 
@@ -94,7 +95,7 @@ const Login = ({ setCurrentUserEmail }) => {
             value={password}
             onChange={(e) => handleChange(e)}
           />
-          <Button width="100%" height="30px" text="Login"></Button>
+          <Button width="100%" height="40px" text="Login"></Button>
           <Link to="/register">
             <Label text="Don't have an account? Register"></Label>
           </Link>

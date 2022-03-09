@@ -11,7 +11,7 @@ const StyledHeroDiv = styled.div`
 `;
 
 const ContainerP = styled.div`
-  background-color: black;
+  background-color: #24292f;
   background: rgba(0, 0, 0, 0.8);
   border-radius: 5px;
   width: 400px;

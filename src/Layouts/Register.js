@@ -16,9 +16,9 @@ const Wrapper = styled.div`
 
 const Form = styled.form`
   margin: 0 auto;
-  width: 100%;
-  max-width: 414px;
-  padding: 10px;
+  width: 500px;
+  height: 330px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   position: relative;

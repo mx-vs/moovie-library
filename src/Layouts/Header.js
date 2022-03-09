@@ -27,7 +27,7 @@ const jump = keyframes`
 
 const StyledHeader = styled.h1`
   font-size: 20px;
-  color: black;
+  color: #24292f;
   transition: all 0.3s ease-out;
 
   &:hover {
@@ -75,10 +75,15 @@ const Header = ({
       {currentUserEmail === null ? (
         <div style={{ display: "flex" }}>
           <Link to="/login" style={{ textDecoration: "none" }}>
-            <Label text="Login" />
+            <Button text="Login" width="90px" height="20px" margin="0 10px" />
           </Link>
           <Link to="/register" style={{ textDecoration: "none" }}>
-            <Label text="Register" />
+            <Button
+              text="Register"
+              width="90px"
+              height="20px"
+              margin="0 10px"
+            />
           </Link>
         </div>
       ) : (

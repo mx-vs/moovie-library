@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import Button from './Button';
-import { useHistory } from 'react-router-dom';
+import styled from "styled-components";
+import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 const StyledForm = styled.form`
   display: flex;
@@ -21,12 +21,16 @@ const StyledSearch = styled.input`
 `;
 
 const SearchBar = ({ input, setInput, getSearchResults }) => {
+  let navigate = useNavigate();
+
   return (
     <StyledForm
       onSubmit={(e) => {
         e.preventDefault();
         getSearchResults(input);
-      }}>
+        navigate("/search");
+      }}
+    >
       <StyledSearch
         value={input}
         onChange={(event) => setInput(event.target.value)}

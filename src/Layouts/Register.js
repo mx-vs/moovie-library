@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-import Button from '../Components/Button';
-import Label from '../Components/Label';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
+import Button from "../Components/Button";
+import Label from "../Components/Label";
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100%;
+  height: 350px;
   width: 100%;
+  margin-top: 40px;
 `;
 
 const Form = styled.form`
   margin: 0 auto;
   width: 100%;
   max-width: 414px;
-  padding: 1.3rem;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -27,7 +28,7 @@ const Input = styled.input`
   padding: 11px 13px;
   background: #f9f9fa;
   color: #f03d4e;
-  margin-bottom: 0.9rem;
+  margin-bottom: 30px;
   border-radius: 4px;
   outline: 0;
   border: 1px solid rgba(245, 245, 245, 0.7);
@@ -41,19 +42,20 @@ const Input = styled.input`
 `;
 
 const Register = () => {
-  const [data, setData] = useState({
-    email: '',
-    password: ''
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
   };
 
   const handleChange = (e) => {
-    e.preventDefault();
-    const { name, value } = e.target;
-    setData(Object.assign(data, { [name]: value }));
+    const { name, value } = e.currentTarget;
+    if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    }
   };
 
   return (
@@ -65,18 +67,20 @@ const Register = () => {
           <Input
             type="email"
             name="email"
-            value={data.email}
-            onChange={handleChange}
+            value={email}
+            onChange={(e) => handleChange(e)}
           />
           <Label text="Password"></Label>
           <Input
             type="password"
             name="password"
-            value={data.password}
-            onChange={handleChange}
+            value={password}
+            onChange={(e) => handleChange(e)}
           />
           <Button width="100%" height="35px" text="Register"></Button>
-          <Label text="Have an account? Login"></Label>
+          <Link to="/login">
+            <Label text="Have an account? Login"></Label>{" "}
+          </Link>
         </Form>
       </Wrapper>
     </>

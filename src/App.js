@@ -6,16 +6,17 @@ import "./App.css";
 import Header from "./Layouts/Header";
 import Home from "./Layouts/Home";
 import SearchResults from "./Layouts/SearchResults";
-import Access from "./Layouts/Access";
+import Login from "./Layouts/Login";
+import Register from "./Layouts/Register";
 import ErrorPage from "./Layouts/ErrorPage";
 import Footer from "./Layouts/Footer";
 
 const App = () => {
-  const SearchWrapper = styled.div`
+  /* const SearchWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-  `;
+  `; */
 
   const [input, setInput] = useState("");
   const [searchResults, setSearchResults] = useState({});
@@ -37,12 +38,16 @@ const App = () => {
         setInput={setInput}
         getSearchResults={getSearchResults}
       />
-      <SearchWrapper>
-        <SearchResults searchResults={searchResults} />
-      </SearchWrapper>
+      {/* <SearchWrapper /> */}
+
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/access" element={<Access />} />
+        <Route
+          path="/search/*"
+          element={<SearchResults searchResults={searchResults} />}
+        ></Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
       <Footer />

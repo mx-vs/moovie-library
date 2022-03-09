@@ -9,6 +9,7 @@ const StyledSection = styled.section`
   justify-content: center;
   width: 600px;
   border-radius: 5px;
+  margin: 20px auto;
 `;
 
 const StyledDiv = styled.div`

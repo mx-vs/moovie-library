@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import styled from "styled-components";
 import axios from "axios";
 import "./App.css";
 import Header from "./Layouts/Header";
@@ -12,12 +11,7 @@ import ErrorPage from "./Layouts/ErrorPage";
 import Footer from "./Layouts/Footer";
 
 const App = () => {
-  /* const SearchWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  `; */
-
+  const [currentUserEmail, setCurrentUserEmail] = useState(null);
   const [input, setInput] = useState("");
   const [searchResults, setSearchResults] = useState({});
 
@@ -37,17 +31,23 @@ const App = () => {
         input={input}
         setInput={setInput}
         getSearchResults={getSearchResults}
+        currentUserEmail={currentUserEmail}
+        setCurrentUserEmail={setCurrentUserEmail}
       />
-      {/* <SearchWrapper /> */}
-
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route
           path="/search/*"
           element={<SearchResults searchResults={searchResults} />}
         ></Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/login"
+          element={<Login setCurrentUserEmail={setCurrentUserEmail} />}
+        />
+        <Route
+          path="/register"
+          element={<Register setCurrentUserEmail={setCurrentUserEmail} />}
+        />
         <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
       <Footer />

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import Button from "../Components/Button";
 import Label from "../Components/Label";
+import { auth } from "../Services/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Wrapper = styled.div`
   display: flex;
@@ -41,13 +43,10 @@ const Input = styled.input`
   }
 `;
 
-const Login = () => {
+const Login = ({ setCurrentUserEmail }) => {
+  let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -58,10 +57,28 @@ const Login = () => {
     }
   };
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        localStorage.setItem("currentUser", email);
+        setCurrentUserEmail(email);
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        if (errorCode) {
+          alert(errorMessage);
+        }
+      });
+  };
+
   return (
     <>
       <Wrapper>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleLogin}>
           <Label text="Login" title></Label>
           <Label text="Email"></Label>
           <Input
@@ -79,8 +96,7 @@ const Login = () => {
           />
           <Button width="100%" height="30px" text="Login"></Button>
           <Link to="/register">
-            {" "}
-            <Label text="Don't have an account? Register"></Label>{" "}
+            <Label text="Don't have an account? Register"></Label>
           </Link>
         </Form>
       </Wrapper>

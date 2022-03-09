@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
 const jump = keyframes`
   from{
@@ -30,7 +30,11 @@ const StyledButton = styled.button`
 
 const Button = (props) => {
   return (
-    <StyledButton width={props.width} height={props.height}>
+    <StyledButton
+      width={props.width}
+      height={props.height}
+      onClick={props.onClick}
+    >
       {props.text}
     </StyledButton>
   );

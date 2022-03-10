@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Label from "../Components/Label";
+import { Link, useNavigate } from "react-router-dom";
 
 const StyledSection = styled.section`
   box-shadow: 0 0px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -14,6 +15,8 @@ const StyledSection = styled.section`
 
 const StyledDiv = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 `;
 
@@ -53,7 +56,10 @@ const SearchResults = ({ searchResults }) => {
               /<\/?[^>]+(>|$)/g,
               ""
             )}`}</StyledSummary>
-            <Label text={`More information at: ${result.show.url}`} />
+            <Label text="More information at:" />
+            <Link to={result.show.url} style={{ fontSize: "12px" }}>
+              {result.show.url}
+            </Link>
           </StyledDiv>
         </StyledSection>
       ))}

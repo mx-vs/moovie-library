@@ -5,6 +5,7 @@ import { signOut } from "firebase/auth";
 import SearchBar from "../Components/SearchBar";
 import Label from "../Components/Label";
 import Button from "../Components/Button";
+import { MdHome } from "react-icons/md";
 
 const StyledHeaderDiv = styled.div`
   display: flex;
@@ -64,7 +65,15 @@ const Header = ({
 
   return (
     <StyledHeaderDiv>
-      <Link to="/" style={{ textDecoration: "none" }}>
+      <Link
+        to="/"
+        style={{
+          textDecoration: "none",
+          display: "flex",
+          alignItems: "flex-end"
+        }}
+      >
+        <MdHome size="28px" color="black" />
         <StyledHeader>Moovie Library</StyledHeader>
       </Link>
       <SearchBar

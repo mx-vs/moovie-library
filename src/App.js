@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { db } from './Services/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 import axios from 'axios';
 import './App.css';
 import Header from './Layouts/Header';
@@ -14,6 +16,7 @@ const App = () => {
 	const [currentUserEmail, setCurrentUserEmail] = useState(null);
 	const [input, setInput] = useState('');
 	const [searchResults, setSearchResults] = useState({});
+	const [favorites, setFavorites] = useState([]);
 
 	const getSearchResults = async (input) => {
 		const response = await axios.get(`https://api.tvmaze.com/search/shows?q=:${input}`);
@@ -22,6 +25,21 @@ const App = () => {
 			setSearchResults(response.data);
 		}
 	};
+
+	let tempArr = [];
+	const getFavorites = async () => {
+		const querySnapshot = await getDocs(collection(db, currentUserEmail));
+		querySnapshot.forEach((doc) => {
+			tempArr.push({ name: doc.data().name, image: doc.data().image });
+		});
+		setFavorites(tempArr);
+	};
+
+	useEffect(() => {
+		if (currentUserEmail !== null) {
+			getFavorites();
+		}
+	}, [currentUserEmail, favorites]);
 
 	return (
 		<div className="App">
@@ -33,7 +51,10 @@ const App = () => {
 				setCurrentUserEmail={setCurrentUserEmail}
 			/>
 			<Routes>
-				<Route path="/" element={<Home currentUserEmail={currentUserEmail} />} />
+				<Route
+					path="/"
+					element={<Home currentUserEmail={currentUserEmail} favorites={favorites} />}
+				/>
 				<Route
 					path="/search/*"
 					element={

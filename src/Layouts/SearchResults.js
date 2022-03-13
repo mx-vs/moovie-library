@@ -45,6 +45,7 @@ const SearchResults = ({ currentUserEmail, searchResults }) => {
 
 	const addToFavourites = async (name, image) => {
 		await addDoc(collection(db, currentUserEmail), {
+			//add ID which will be used to change the star and enable remove from favorites
 			name,
 			image,
 		});

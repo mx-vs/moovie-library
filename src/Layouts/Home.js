@@ -1,11 +1,16 @@
 import Hero from './Hero';
 import Favorites from './Favorites';
+import Label from '../Components/Label';
 
-const Home = ({ currentUserEmail }) => {
+const Home = ({ currentUserEmail, favorites }) => {
 	return (
 		<>
 			<Hero />
-			<Favorites currentUserEmail={currentUserEmail} />
+			{currentUserEmail !== null ? (
+				<Favorites currentUserEmail={currentUserEmail} favorites={favorites} />
+			) : (
+				<Label text="Please login to see your favorites"></Label>
+			)}
 		</>
 	);
 };

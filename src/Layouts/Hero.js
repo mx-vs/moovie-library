@@ -26,7 +26,7 @@ const StyledP = styled.p`
 	color: white;
 	text-align: center;
 	padding: 30px;
-	line-height: 20px;
+	line-height: 25px;
 `;
 
 const CowLogo = styled.img`
@@ -45,11 +45,12 @@ const Hero = () => {
 					<StyledP>
 						Welcome to Moovie Library!
 						<br /> <br />
-						THE BEST PLACE to discover
+						Discover
 						<br />
-						and save moovies
+						and permanently favorite moovies
 						<br />
 						(a.k.a TV Shows)!
+						<br />
 					</StyledP>
 				</ContainerP>
 			</StyledHeroDiv>

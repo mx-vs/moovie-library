@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { db } from './Services/firebase';
 import { collection, getDocs } from 'firebase/firestore';
@@ -15,8 +15,9 @@ import Footer from './Layouts/Footer';
 const App = () => {
 	const [currentUserEmail, setCurrentUserEmail] = useState(null);
 	const [input, setInput] = useState('');
-	const [searchResults, setSearchResults] = useState({});
+	const [searchResults, setSearchResults] = useState([]);
 	const [favorites, setFavorites] = useState([]);
+	let currentUser = localStorage.getItem('currentUser');
 
 	const getSearchResults = async (input) => {
 		const response = await axios.get(`https://api.tvmaze.com/search/shows?q=:${input}`);
@@ -26,20 +27,20 @@ const App = () => {
 		}
 	};
 
-	let tempArr = [];
-	const getFavorites = async () => {
+	const getFavorites = useCallback(async () => {
+		let tempArr = [];
 		const querySnapshot = await getDocs(collection(db, currentUserEmail));
 		querySnapshot.forEach((doc) => {
 			tempArr.push({ name: doc.data().name, image: doc.data().image });
 		});
 		setFavorites(tempArr);
-	};
+	}, [currentUserEmail]);
 
 	useEffect(() => {
 		if (currentUserEmail !== null) {
 			getFavorites();
 		}
-	}, [currentUserEmail, favorites]);
+	}, [currentUserEmail, getFavorites]);
 
 	return (
 		<div className="App">
@@ -49,6 +50,7 @@ const App = () => {
 				getSearchResults={getSearchResults}
 				currentUserEmail={currentUserEmail}
 				setCurrentUserEmail={setCurrentUserEmail}
+				currentUser={currentUser}
 			/>
 			<Routes>
 				<Route

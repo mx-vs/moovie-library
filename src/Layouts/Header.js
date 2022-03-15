@@ -38,8 +38,10 @@ const StyledHeader = styled.h1`
 	}
 `;
 
-const Header = ({ input, setInput, getSearchResults, currentUserEmail, setCurrentUserEmail }) => {
+const Header = ({ input, setInput, getSearchResults, setCurrentUserEmail, currentUser }) => {
 	let navigate = useNavigate();
+	const regex = /.+?(?=@)/g;
+	let user = regex.exec(currentUser);
 
 	const handleLogout = () => {
 		signOut(auth)
@@ -70,7 +72,7 @@ const Header = ({ input, setInput, getSearchResults, currentUserEmail, setCurren
 				<StyledHeader>Moovie Library</StyledHeader>
 			</Link>
 			<SearchBar input={input} setInput={setInput} getSearchResults={getSearchResults} />
-			{currentUserEmail === null ? (
+			{currentUser === null ? (
 				<div style={{ display: 'flex' }}>
 					<Link to="/login" style={{ textDecoration: 'none' }}>
 						<Button text="Login" width="90px" height="20px" margin="0 10px" />
@@ -81,7 +83,7 @@ const Header = ({ input, setInput, getSearchResults, currentUserEmail, setCurren
 				</div>
 			) : (
 				<>
-					<Label text={`Welcome ${currentUserEmail}`} />
+					<Label text={`Welcome ${user}`} />
 					<Button text="Logout" width="90px" height="20px" onClick={handleLogout} />
 				</>
 			)}

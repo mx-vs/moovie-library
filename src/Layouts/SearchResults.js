@@ -53,44 +53,53 @@ const SearchResults = ({ currentUserEmail, searchResults }) => {
 
 	return (
 		<>
-			{Object.values(searchResults).map((result, index) => (
-				<StyledSection key={index}>
-					<StyledDiv>
-						{currentUserEmail !== null && (
-							<Star
-								onClick={() => {
-									result.show.image !== null
-										? addToFavourites(result.show.name, result.show.image.original)
-										: addToFavourites(result.show.name, noImageUrl);
-								}}
-							/>
-						)}
-						<Label text={result.show.name} title></Label>
-						{result.show.image !== null ? (
-							<StyledImg src={result.show.image.original} />
-						) : (
-							<StyledImg src={noImageUrl} />
-						)}
-					</StyledDiv>
+			{searchResults !== [] && (
+				<>
+					{Object.values(searchResults).map((result, index) => (
+						<StyledSection key={index}>
+							<StyledDiv>
+								{currentUserEmail !== null && (
+									<Star
+										onClick={() => {
+											result.show.image !== null
+												? addToFavourites(
+														result.show.name,
+														result.show.image.original,
+												  )
+												: addToFavourites(result.show.name, noImageUrl);
+											alert('This moovie has been added to your favorites!');
+										}}
+									/>
+								)}
+								<Label text={result.show.name} title />
+								{result.show.image !== null ? (
+									<StyledImg src={result.show.image.original} />
+								) : (
+									<StyledImg src={noImageUrl} />
+								)}
+							</StyledDiv>
 
-					<StyledDiv>
-						<Label text={`Genre: ${result.show.genres}`} />
-						<Label text={`Runtime: ${result.show.runtime} minutes`} />
-						<StyledSummary>{`Summary: ${result.show.summary.replace(
-							/<\/?[^>]+(>|$)/g,
-							'',
-						)}`}</StyledSummary>
-						<Label text="More information at:" />
-						<a
-							href={result.show.url}
-							target="_blank"
-							rel="noopener noreferrer"
-							style={{ fontSize: '12px' }}>
-							{result.show.url}
-						</a>
-					</StyledDiv>
-				</StyledSection>
-			))}
+							<StyledDiv>
+								<Label text={`Genre: ${result.show.genres}`} />
+								<Label text={`Runtime: ${result.show.runtime} minutes`} />
+								<StyledSummary>{`Summary: ${result.show.summary.replace(
+									/<\/?[^>]+(>|$)/g,
+									'',
+								)}`}</StyledSummary>
+								<Label text="More information at:" />
+								<a
+									href={result.show.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									style={{ fontSize: '12px' }}>
+									{result.show.url}
+								</a>
+							</StyledDiv>
+						</StyledSection>
+					))}
+					<Label text="No results" title="true" />
+				</>
+			)}
 		</>
 	);
 };

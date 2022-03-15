@@ -9,7 +9,7 @@ const Home = ({ currentUserEmail, favorites }) => {
 			{currentUserEmail !== null ? (
 				<Favorites currentUserEmail={currentUserEmail} favorites={favorites} />
 			) : (
-				<Label text="Please login to see your favorites"></Label>
+				<Label text="Please login or register to see your favorites" />
 			)}
 		</>
 	);

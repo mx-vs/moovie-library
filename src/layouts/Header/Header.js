@@ -1,10 +1,10 @@
 import styled, { keyframes } from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../Services/firebase';
+import { auth } from '../../services/firebase';
 import { signOut } from 'firebase/auth';
-import SearchBar from '../Components/SearchBar';
-import Label from '../Components/Label';
-import Button from '../Components/Button';
+import SearchBar from '../../components/SearchBar';
+import Text from '../../components/Text';
+import Button from '../../components/Button';
 import { MdHome } from 'react-icons/md';
 
 const StyledHeaderDiv = styled.div`
@@ -12,9 +12,7 @@ const StyledHeaderDiv = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	padding: 20px;
-	margin-top: 10px;
-	height: 50px;
-	border-bottom: 1px solid black;
+	height: 40px;
 `;
 
 const jump = keyframes`
@@ -75,16 +73,16 @@ const Header = ({ input, setInput, getSearchResults, setCurrentUserEmail, curren
 			{currentUser === null ? (
 				<div style={{ display: 'flex' }}>
 					<Link to="/login" style={{ textDecoration: 'none' }}>
-						<Button text="Login" width="90px" height="20px" margin="0 10px" />
+						<Button text="Login" width="100px" height="30px" margin="0 10px" />
 					</Link>
 					<Link to="/register" style={{ textDecoration: 'none' }}>
-						<Button text="Register" width="90px" height="20px" margin="0 10px" />
+						<Button text="Register" width="100px" height="30px" margin="0 10px" />
 					</Link>
 				</div>
 			) : (
 				<>
-					<Label text={`Welcome ${user}`} />
-					<Button text="Logout" width="90px" height="20px" onClick={handleLogout} />
+					<Text text={`Welcome ${user}`} />
+					<Button text="Logout" width="90px" height="30px" onClick={handleLogout} />
 				</>
 			)}
 		</StyledHeaderDiv>

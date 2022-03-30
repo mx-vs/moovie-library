@@ -10,18 +10,20 @@ const StyledForm = styled.form`
 `;
 
 const StyledSearch = styled.input`
+	height: 15px;
+	width: 250px;
 	font-size: 15px;
 	color: #2a2a29;
-	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
 	margin-right: 10px;
-	height: 30px;
-	width: 250px;
-	border-radius: 5px;
+	border-radius: 20px;
+	padding: 10px;
 	border: 0;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1);
 	:focus,
 	:hover {
-		box-shadow: 0 0 3px rgba(0, 0, 0, 0.15), 0 1px 5px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.15), 0 1px 5px rgba(0, 0, 0, 0.1);
+		outline: none;
 	}
 `;
 
@@ -44,7 +46,7 @@ const SearchBar = ({ input, setInput, getSearchResults }) => {
 				onChange={(event) => setInput(event.target.value)}
 				placeholder="Type to search..."
 			/>
-			<Button width="100px" height="30px" text="search" />
+			<Button width="120px" height="35px" text="search" />
 		</StyledForm>
 	);
 };

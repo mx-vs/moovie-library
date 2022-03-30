@@ -4,13 +4,14 @@ const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 30px;
+	height: 40px;
 	margin-top: auto;
+	background-color: #24292f;
 `;
 const StyledFooter = styled.footer`
 	text-align: center;
 	font-size: 12px;
-	color: #24292f;
+	color: whitesmoke;
 `;
 
 const Footer = () => {

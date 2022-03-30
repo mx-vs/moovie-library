@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Button from '../Components/Button';
-import Label from '../Components/Label';
-import { auth } from '../Services/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import Button from '../../components/Button';
+import Text from '../../components/Text';
+import { auth } from '../../services/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -22,7 +22,6 @@ const Form = styled.form`
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	background: #f6f8fa;
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1);
 `;
 
@@ -44,7 +43,7 @@ const Input = styled.input`
 	}
 `;
 
-const Login = ({ setCurrentUserEmail }) => {
+const Register = ({ setCurrentUserEmail }) => {
 	let navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -58,9 +57,9 @@ const Login = ({ setCurrentUserEmail }) => {
 		}
 	};
 
-	const handleLogin = (e) => {
+	const handleRegister = (e) => {
 		e.preventDefault();
-		signInWithEmailAndPassword(auth, email, password)
+		createUserWithEmailAndPassword(auth, email, password)
 			.then((userCredential) => {
 				const user = userCredential.user;
 				localStorage.setItem('currentUser', email);
@@ -79,20 +78,20 @@ const Login = ({ setCurrentUserEmail }) => {
 	return (
 		<>
 			<Wrapper>
-				<Form onSubmit={handleLogin}>
-					<Label text="Login" title="true" />
-					<Label text="Email" />
+				<Form onSubmit={handleRegister}>
+					<Text text="Register" title="true" />
+					<Text text="Email" />
 					<Input type="email" name="email" value={email} onChange={(e) => handleChange(e)} />
-					<Label text="Password" />
+					<Text text="Password" />
 					<Input
 						type="password"
 						name="password"
 						value={password}
 						onChange={(e) => handleChange(e)}
 					/>
-					<Button width="100%" height="40px" text="Login" />
-					<Link to="/register">
-						<Label text="Don't have an account? Register" />
+					<Button width="100%" height="35px" text="Register" />
+					<Link to="/login">
+						<Text text="Have an account? Login" />
 					</Link>
 				</Form>
 			</Wrapper>
@@ -100,4 +99,4 @@ const Login = ({ setCurrentUserEmail }) => {
 	);
 };
 
-export default Login;
+export default Register;

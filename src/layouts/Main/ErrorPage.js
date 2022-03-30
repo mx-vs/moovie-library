@@ -1,4 +1,4 @@
-import errorImg from '../Assets/Error.png';
+import errorImg from '../../assets/Error.png';
 import styled from 'styled-components';
 
 const StyledErrorImg = styled.img`

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Label from '../Components/Label';
+import Text from '../../components/Text';
 
 const Wrapper = styled.div`
 	display: flex;
@@ -28,12 +28,12 @@ const StyledImg = styled.img.attrs((props) => ({
 const Favorites = ({ currentUserEmail, favorites }) => {
 	return (
 		<>
-			<Label text="Your Favorites" title="true" />
+			<Text text="Your Favorites" title="true" />
 			<Wrapper>
 				{Object.values(favorites).map((result, index) => (
 					<StyledDiv key={index}>
 						<StyledImg src={result.image} />
-						<Label text={result.name} title />
+						<Text text={result.name} title />
 					</StyledDiv>
 				))}
 			</Wrapper>

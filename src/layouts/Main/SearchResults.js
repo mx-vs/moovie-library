@@ -1,8 +1,8 @@
-import { db } from '../Services/firebase';
+import { db } from '../../services/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import styled from 'styled-components';
-import Label from '../Components/Label';
-import Star from '../Components/Star';
+import Text from '../../components/Text';
+import Star from '../../components/Star';
 
 const StyledSection = styled.section`
 	box-shadow: 0 0px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -71,7 +71,7 @@ const SearchResults = ({ currentUserEmail, searchResults }) => {
 										}}
 									/>
 								)}
-								<Label text={result.show.name} title />
+								<Text text={result.show.name} title />
 								{result.show.image !== null ? (
 									<StyledImg src={result.show.image.original} />
 								) : (
@@ -80,13 +80,13 @@ const SearchResults = ({ currentUserEmail, searchResults }) => {
 							</StyledDiv>
 
 							<StyledDiv>
-								<Label text={`Genre: ${result.show.genres}`} />
-								<Label text={`Runtime: ${result.show.runtime} minutes`} />
+								<Text text={`Genre: ${result.show.genres}`} />
+								<Text text={`Runtime: ${result.show.runtime} minutes`} />
 								<StyledSummary>{`Summary: ${result.show.summary.replace(
 									/<\/?[^>]+(>|$)/g,
 									'',
 								)}`}</StyledSummary>
-								<Label text="More information at:" />
+								<Text text="More information at:" />
 								<a
 									href={result.show.url}
 									target="_blank"
@@ -97,7 +97,7 @@ const SearchResults = ({ currentUserEmail, searchResults }) => {
 							</StyledDiv>
 						</StyledSection>
 					))}
-					<Label text="No results" title="true" />
+					<Text text="No results" title="true" />
 				</>
 			)}
 		</>

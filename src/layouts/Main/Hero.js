@@ -16,9 +16,9 @@ const Hero = () => {
 				<Text
 					fontSize="50px"
 					textAlign="left"
-					margin="30px"
-					text="Welcome to TV Shows Library"></Text>
-				<Text fontSize="20px" textAlign="left" margin="30px" text="Discover great TV Shows"></Text>
+					margin="40px"
+					text="Welcome to the TV Show Library"></Text>
+				<Text fontSize="30px" textAlign="left" margin="50px" text="Discover great series"></Text>
 			</StyledHeroDiv>
 		</>
 	);

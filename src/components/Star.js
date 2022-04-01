@@ -21,11 +21,12 @@ const jump = keyframes`
 `; */
 
 const EmptyStar = styled(MdStarBorder)`
+	margin: 5px;
 	transition: all 0.3s ease-out;
 	:hover {
 		cursor: pointer;
 		color: #dc143c;
-		animation: ${jump} 0.2s ease-out forwards;
+		animation: ${jump} 0.1s ease-out forwards;
 	}
 `;
 

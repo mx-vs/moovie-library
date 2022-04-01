@@ -9,10 +9,9 @@ import Footer from './layouts/Footer/Footer';
 
 const App = () => {
 	const [currentUserEmail, setCurrentUserEmail] = useState(null);
-	const [input, setInput] = useState('');
+	const [searchInput, setSearchInput] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const [favorites, setFavorites] = useState([]);
-	let currentUser = localStorage.getItem('currentUser');
 
 	const getSearchResults = async (input) => {
 		const response = await axios.get(`https://api.tvmaze.com/search/shows?q=:${input}`);
@@ -31,23 +30,22 @@ const App = () => {
 		setFavorites(tempArr);
 	}, [currentUserEmail]);
 
-	useEffect(() => {
+	/* useEffect(() => {
 		if (currentUserEmail !== null) {
 			getFavorites();
 		}
-	}, [currentUserEmail, getFavorites]);
+	}, [currentUserEmail, getFavorites]); */
 
 	return (
 		<div className="App">
 			<Header
-				input={input}
-				setInput={setInput}
+				searchInput={searchInput}
+				setSearchInput={setSearchInput}
 				getSearchResults={getSearchResults}
 				currentUserEmail={currentUserEmail}
 				setCurrentUserEmail={setCurrentUserEmail}
-				currentUser={currentUser}
 			/>
-			<Main />
+			<Main setCurrentUserEmail={setCurrentUserEmail} searchResults={searchResults} />
 			<Footer />
 		</div>
 	);

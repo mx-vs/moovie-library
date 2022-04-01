@@ -27,23 +27,23 @@ const StyledSearch = styled.input`
 	}
 `;
 
-const SearchBar = ({ input, setInput, getSearchResults }) => {
+const SearchBar = ({ searchInput, setSearchInput, getSearchResults }) => {
 	let navigate = useNavigate();
 
 	return (
 		<StyledForm
 			onSubmit={(e) => {
 				e.preventDefault();
-				if (input) {
-					getSearchResults(input);
+				if (searchInput) {
+					getSearchResults(searchInput);
 					navigate('/search');
 				} else {
 					alert('The search field is empty!');
 				}
 			}}>
 			<StyledSearch
-				value={input}
-				onChange={(event) => setInput(event.target.value)}
+				value={searchInput}
+				onChange={(event) => setSearchInput(event.target.value)}
 				placeholder="Type to search..."
 			/>
 			<Button width="120px" height="35px" text="search" />

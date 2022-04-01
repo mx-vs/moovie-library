@@ -1,52 +1,47 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../../services/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import styled from 'styled-components';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
-import { auth } from '../../services/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 
-const Wrapper = styled.div`
-	display: flex;
-	justify-content: center;
-	height: 350px;
-	width: 100%;
-	margin-top: 40px;
-`;
-
-const Form = styled.form`
-	margin: 0 auto;
-	width: 500px;
-	height: 330px;
-	padding: 20px;
+const StyledForm = styled.form`
 	display: flex;
 	flex-direction: column;
-	position: relative;
+	align-items: center;
+	width: 550px;
+	margin: 70px auto;
+	padding: 20px;
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1);
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: 20px;
 `;
 
 const Input = styled.input`
-	max-width: 100%;
-	padding: 11px 13px;
-	background: #f9f9fa;
-	color: #24292f;
-	margin-bottom: 30px;
-	border-radius: 4px;
-	outline: 0;
-	border: 1px solid rgba(245, 245, 245, 0.7);
-	font-size: 14px;
-	transition: all 0.3s ease-out;
+	height: 20px;
+	width: 90%;
+	font-size: 18px;
+	color: #2a2a29;
+	margin-right: 10px;
+	border-radius: 20px;
+	margin: 10px;
+	padding: 10px;
+	border: 0;
+	text-align: center;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1);
 	:focus,
 	:hover {
-		box-shadow: 0 0 3px rgba(0, 0, 0, 0.15), 0 1px 5px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.15), 0 1px 5px rgba(0, 0, 0, 0.1);
+		outline: none;
 	}
 `;
 
 const Register = ({ setCurrentUserEmail }) => {
-	let navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	let navigate = useNavigate();
 
 	const handleChange = (e) => {
 		const { name, value } = e.currentTarget;
@@ -76,26 +71,17 @@ const Register = ({ setCurrentUserEmail }) => {
 	};
 
 	return (
-		<>
-			<Wrapper>
-				<Form onSubmit={handleRegister}>
-					<Text text="Register" title="true" />
-					<Text text="Email" />
-					<Input type="email" name="email" value={email} onChange={(e) => handleChange(e)} />
-					<Text text="Password" />
-					<Input
-						type="password"
-						name="password"
-						value={password}
-						onChange={(e) => handleChange(e)}
-					/>
-					<Button width="100%" height="35px" text="Register" />
-					<Link to="/login">
-						<Text text="Have an account? Login" />
-					</Link>
-				</Form>
-			</Wrapper>
-		</>
+		<StyledForm onSubmit={handleRegister}>
+			<Text fontSize="25px" textAlign="center" margin="10px" text="Register" />
+			<Text fontSize="20px" textAlign="left" margin="10px" text="Email" />
+			<Input type="email" name="email" value={email} onChange={(e) => handleChange(e)} />
+			<Text fontSize="20px" textAlign="left" margin="10px" text="Password" />
+			<Input type="password" name="password" value={password} onChange={(e) => handleChange(e)} />
+			<Button width="60%" height="35px" margin="20px" text="Register" />
+			<Link to="/login">
+				<Button width="290px" height="35px" margin="10px" text="Have and account? Login" />
+			</Link>
+		</StyledForm>
 	);
 };
 

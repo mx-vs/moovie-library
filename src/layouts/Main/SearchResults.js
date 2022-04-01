@@ -5,38 +5,37 @@ import Text from '../../components/Text';
 import Star from '../../components/Star';
 
 const StyledSection = styled.section`
-	box-shadow: 0 0px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
-	padding: 20px;
-	margin: 20px;
 	display: flex;
-	justify-content: center;
-	width: 600px;
-	border-radius: 5px;
-	margin: 20px auto;
-	position: relative;
+	justify-content: space-evenly;
+	width: 750px;
+	margin: 30px auto;
+	padding: 10px;
+	border-radius: 20px;
+	box-shadow: 0 0px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+	background: rgba(255, 255, 255, 0.5);
 `;
 
 const StyledDiv = styled.div`
 	display: flex;
-	justify-content: center;
-	align-items: center;
 	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
 `;
 
 const StyledImg = styled.img.attrs((props) => ({
 	src: props.src,
 }))`
-	width: 170px;
-	border-radius: 5px;
+	width: 180px;
+	margin: 10px 5px;
+	border-radius: 20px;
 `;
 
 const StyledSummary = styled.p`
 	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
-	width: 400px;
+	width: 450px;
 	font-size: 12px;
 	line-height: 20px;
-	text-align: center;
-	margin-left: 30px;
+	text-align: justify;
 `;
 
 const SearchResults = ({ currentUserEmail, searchResults }) => {
@@ -71,7 +70,7 @@ const SearchResults = ({ currentUserEmail, searchResults }) => {
 										}}
 									/>
 								)}
-								<Text text={result.show.name} title />
+
 								{result.show.image !== null ? (
 									<StyledImg src={result.show.image.original} />
 								) : (
@@ -80,18 +79,33 @@ const SearchResults = ({ currentUserEmail, searchResults }) => {
 							</StyledDiv>
 
 							<StyledDiv>
-								<Text text={`Genre: ${result.show.genres}`} />
-								<Text text={`Runtime: ${result.show.runtime} minutes`} />
+								<Text
+									fontSize="30px"
+									textAlign="center"
+									margin="10px"
+									text={result.show.name}
+								/>
+								<Text
+									fontSize="20px"
+									textAlign="center"
+									margin="10px"
+									text={`Genre: ${result.show.genres}`}
+								/>
 								<StyledSummary>{`Summary: ${result.show.summary.replace(
 									/<\/?[^>]+(>|$)/g,
 									'',
 								)}`}</StyledSummary>
-								<Text text="More information at:" />
+								<Text
+									fontSize="18px"
+									textAlign="center"
+									margin="10px"
+									text="More information at:"
+								/>
 								<a
 									href={result.show.url}
 									target="_blank"
 									rel="noopener noreferrer"
-									style={{ fontSize: '12px' }}>
+									style={{ fontSize: '14px', color: '#24292f' }}>
 									{result.show.url}
 								</a>
 							</StyledDiv>

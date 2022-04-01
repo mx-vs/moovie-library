@@ -6,13 +6,14 @@ import Star from '../../components/Star';
 
 const StyledSection = styled.section`
 	display: flex;
-	justify-content: space-evenly;
-	width: 750px;
-	margin: 30px auto;
-	padding: 10px;
+	flex-direction: column;
+	width: 350px;
+	height: 500px;
+	margin: 25px 15px;
+	padding: 25px;
 	border-radius: 20px;
 	box-shadow: 0 0px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
-	background: rgba(255, 255, 255, 0.5);
+	background: rgba(255, 255, 255, 0.8);
 `;
 
 const StyledDiv = styled.div`
@@ -25,14 +26,15 @@ const StyledDiv = styled.div`
 const StyledImg = styled.img.attrs((props) => ({
 	src: props.src,
 }))`
-	width: 180px;
-	margin: 10px 5px;
+	width: 160px;
+	height: 230px;
+	margin: 10px;
 	border-radius: 20px;
 `;
 
 const StyledSummary = styled.p`
 	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
-	width: 450px;
+	margin: 5px;
 	font-size: 12px;
 	line-height: 20px;
 	text-align: justify;
@@ -51,7 +53,7 @@ const SearchResults = ({ currentUserEmail, searchResults }) => {
 	};
 
 	return (
-		<>
+		<div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
 			{searchResults !== [] && (
 				<>
 					{Object.values(searchResults).map((result, index) => (
@@ -70,7 +72,6 @@ const SearchResults = ({ currentUserEmail, searchResults }) => {
 										}}
 									/>
 								)}
-
 								{result.show.image !== null ? (
 									<StyledImg src={result.show.image.original} />
 								) : (
@@ -82,39 +83,31 @@ const SearchResults = ({ currentUserEmail, searchResults }) => {
 								<Text
 									fontSize="30px"
 									textAlign="center"
-									margin="10px"
+									margin="5px"
 									text={result.show.name}
 								/>
-								<Text
-									fontSize="20px"
-									textAlign="center"
-									margin="10px"
-									text={`Genre: ${result.show.genres}`}
-								/>
-								<StyledSummary>{`Summary: ${result.show.summary.replace(
-									/<\/?[^>]+(>|$)/g,
-									'',
-								)}`}</StyledSummary>
-								<Text
-									fontSize="18px"
-									textAlign="center"
-									margin="10px"
-									text="More information at:"
-								/>
+								<StyledSummary>{`${result.show.summary
+									.replace(/<\/?[^>]+(>|$)/g, '')
+									.substring(0, 300)}...`}</StyledSummary>
+							</StyledDiv>
+
+							<StyledDiv>
+								<Text fontSize="15px" textAlign="center" margin="10px" text="More info at:" />
 								<a
 									href={result.show.url}
 									target="_blank"
 									rel="noopener noreferrer"
 									style={{ fontSize: '14px', color: '#24292f' }}>
-									{result.show.url}
+									TVMaze
 								</a>
 							</StyledDiv>
 						</StyledSection>
 					))}
+
 					<Text text="No results" title="true" />
 				</>
 			)}
-		</>
+		</div>
 	);
 };
 

@@ -21,7 +21,6 @@ const jump = keyframes`
 `; */
 
 const EmptyStar = styled(MdStarBorder)`
-	margin: 5px;
 	transition: all 0.3s ease-out;
 	:hover {
 		cursor: pointer;

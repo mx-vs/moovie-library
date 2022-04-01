@@ -14,7 +14,7 @@ const StyledForm = styled.form`
 	margin: 70px auto;
 	padding: 20px;
 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1);
-	background: rgba(255, 255, 255, 0.5);
+	background: rgba(255, 255, 255, 0.8);
 	border-radius: 20px;
 `;
 
